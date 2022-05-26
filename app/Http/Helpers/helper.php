@@ -42,3 +42,9 @@ function tanggal_indonesia($tgl, $tampil_hari = true){
 	return $text;
 
 }
+
+
+function add_zero($val, $threshold = null)
+{
+	return sprintf("%0".$threshold."s", $val);
+}

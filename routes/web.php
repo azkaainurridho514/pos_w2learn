@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,8 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/categories/data', [CategoriesController::class, 'data'])->name('categories.data');
     Route::resource('/categories', CategoriesController::class);
+
+    Route::get('/products/data', [ProductsController::class, 'data'])->name('products.data');
+    Route::post('/products/delete-selected', [ProductsController::class, 'deleteSelected'])->name('products.delete_selected');
+    Route::resource('/products', ProductsController::class);
 });
