@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\MembersController;
+use App\Http\Controllers\SupplierController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +36,13 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/products/data', [ProductsController::class, 'data'])->name('products.data');
     Route::post('/products/delete-selected', [ProductsController::class, 'deleteSelected'])->name('products.delete_selected');
+    Route::post('/products/cetak-barcode', [ProductsController::class, 'cetakBarcode'])->name('products.cetak_barcode');
     Route::resource('/products', ProductsController::class);
+
+    Route::get('/members/data', [MembersController::class, 'data'])->name('members.data');
+    Route::get('/members/cetak-barcode', [MembersController::class, 'cetak'])->name('members.cetak');
+    Route::resource('/members', MembersController::class);
+
+    Route::get('/suppliers/data', [SupplierController::class, 'data'])->name('suppliers.data');
+    Route::resource('/suppliers', SupplierController::class);
 });

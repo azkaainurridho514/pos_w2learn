@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
+use PDF;
 
 class ProductsController extends Controller
 {
@@ -34,7 +35,7 @@ class ProductsController extends Controller
             return ' <input type="checkbox" name="product_id[]" value="'. $data->product_id .'">';
         })
         ->addColumn('code', function($data){
-            return '<span class="badge badge-success">'. $data->code .'</span>';
+            return '<span class="badge badge-secondary">'. $data->code .'</span>';
         })
         ->addColumn('purchase_price', function($data){
             return format_uang($data->purchase_price);
@@ -47,8 +48,8 @@ class ProductsController extends Controller
         })
         ->addColumn('action', function($data){
             return '
-                <button onclick="editForm(`'. route('products.show', $data->product_id) .'`)" class="badge badge-info border-0 p-2"><i class="fa fa-edit"></i></button>
-                <button onclick="deleteData(`'. route('products.destroy', $data->product_id) .'`)" class="badge badge-danger border-0 p-2"><i class="fa fa-trash"></i></button>
+                <button type="button" onclick="editForm(`'. route('products.show', $data->product_id) .'`)" class="badge badge-info border-0 p-2"><i class="fa fa-edit"></i></button>
+                <button type="button" onclick="deleteData(`'. route('products.destroy', $data->product_id) .'`)" class="badge badge-danger border-0 p-2"><i class="fa fa-trash"></i></button>
             ';
         })
         ->rawColumns(['action', 'code', 'select_all'])
@@ -73,8 +74,9 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Products::latest()->first();
-        $request['code'] = "P" . add_zero((int)$product->product_id + 1, 6);
+        $num = "12345678901234567890";
+        $code  = substr(str_shuffle($num), 0, 10);
+        $request['code'] = "P-" . $code . "";
         $data = Products::create($request->all());
 
         return response()->json('Data berhasil di simpan', 200);
@@ -139,6 +141,20 @@ class ProductsController extends Controller
             $product->delete();
         }
         return response(null, 204);
+    }
+
+    function cetakBarcode(Request $request)
+    {
+        $barcode = array();
+        foreach ($request->product_id as $id) {
+            $product = Products::find($id);
+            $barcode[] = $product;
+        }
+
+        $no = 1;
+        $pdf = PDF::loadView('product.barcode', compact('barcode', 'no'));
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->stream('product.pdf');
     }
 
 }

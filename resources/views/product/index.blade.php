@@ -8,18 +8,18 @@
 @endsection
 
 @section('content')
-
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <button onclick="addForm('{{ route('products.store') }}')" class="btn btn-success btn-xs btn-flat px-3"><i class="fa fa-plus-circle"></i> Add</button>
                 <button onclick="deleteSelected('{{ route('products.delete_selected') }}')" class="btn btn-danger btn-xs btn-flat px-3"><i class="fa fa-trash"></i> Delete</button>
+                <button onclick="cetakBarcode('{{ route('products.cetak_barcode') }}')" class="btn btn-info btn-xs btn-flat px-3"><i class="fa fa-barcode"></i> Cetak</button>
               </div>
 
               <div class="card-body table-responsive">
                
-               <form class="form-product">
+               <form class="form-product" method="post">
                 @csrf
                  <table class="table table-striped table-bordered" id="table_satu">
                   <thead>
@@ -171,6 +171,22 @@
 
 
 
+    }
+
+    function cetakBarcode(url)
+    {
+      if($('input:checked').length < 1){
+         alert('Pilih produk terlebih dahulu!!!');
+         return;
+      // }else if($('input:checked').length < 3){
+      //   alert('Pilih minimal 3 produk!!!');
+      //   return;
+      }else{
+        $('.form-product')
+           .attr('target', '_blank')
+           .attr('action', url)
+           .submit();
+      }
     }
 
   </script>
