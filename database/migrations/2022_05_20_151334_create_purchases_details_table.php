@@ -15,9 +15,9 @@ class CreatePurchasesDetailsTable extends Migration
     {
         Schema::create('purchases_details', function (Blueprint $table) {
             $table->increments('purchase_detail_id');
-            $table->integer('purchese_id');
+            $table->integer('purchase_id');
             $table->integer('product_id');
-            $table->integer('purchese_price');
+            $table->integer('purchase_price');
             $table->integer('total');
             $table->integer('subtotal');
             $table->timestamps();

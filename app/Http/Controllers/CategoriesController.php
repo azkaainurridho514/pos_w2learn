@@ -25,8 +25,8 @@ class CategoriesController extends Controller
         ->addIndexColumn()
         ->addColumn('action', function($data){
             return '
-                <button onclick="editForm(`'. route('categories.update', $data->category_id) .'`)" class="badge badge-info border-0 p-2"><i class="fa fa-edit"></i></button>
-                <button onclick="deleteData(`'. route('categories.destroy', $data->category_id) .'`)" class="badge badge-danger border-0 p-2"><i class="fa fa-trash"></i></button>
+                <button type="button" onclick="editForm(`'. route('categories.update', $data->category_id) .'`)" class="badge badge-info border-0 p-2"><i class="fa fa-edit"></i></button>
+                <button type="button" onclick="deleteData(`'. route('categories.destroy', $data->category_id) .'`)" class="badge badge-danger border-0 p-2"><i class="fa fa-trash"></i></button>
             ';
         })
         ->rawColumns(['action'])

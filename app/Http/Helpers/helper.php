@@ -16,7 +16,7 @@ function terbilang($angka){
 	elseif($angka < 1000) $terbilang = terbilang($angka / 100) . ' ratus' . terbilang($angka % 100); // 200 - 999
 	elseif($angka < 2000) $terbilang = ' seribu' . terbilang($angka - 1000); // 1000 - 1999
 	elseif($angka < 1000000) $terbilang = terbilang($angka / 1000) . ' ribu' . terbilang($angka % 1000); // 2000 - 999999
-	elseif($angka < 1000000000) $terbilang = terbilang($angka / 1000000) . 'juta' . terbilang($angka % 1000000); // 1000000 - 999000000
+	elseif($angka < 1000000000) $terbilang = terbilang($angka / 1000000) . ' juta ' . terbilang($angka % 1000000); // 1000000 - 999000000
 
 	return $terbilang;
 }

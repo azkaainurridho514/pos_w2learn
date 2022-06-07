@@ -5,6 +5,9 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseDetailController;
 
 
 /*
@@ -45,4 +48,15 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/suppliers/data', [SupplierController::class, 'data'])->name('suppliers.data');
     Route::resource('/suppliers', SupplierController::class);
+
+    Route::get('/expenditures/data', [ExpenditureController::class, 'data'])->name('expenditures.data');
+    Route::resource('/expenditures', ExpenditureController::class);
+
+    Route::get('/purchases/data', [PurchaseController::class, 'data'])->name('purchases.data');
+    Route::get('/purchases/{id}/create', [PurchaseController::class, 'create'])->name('purchases.create');
+    Route::resource('/purchases', PurchaseController::class)->except('create');
+
+    Route::get('/purchases_detail/{id}/data', [PurchaseDetailController::class, 'data'])->name('purchases_detail.data');
+    Route::get('/purchases_detail/loadform/{discount}/{total}', [PurchaseDetailController::class, 'loadform'])->name('purchases_detail.loadform');
+    Route::resource('/purchases_detail', PurchaseDetailController::class)->except('create', 'show', 'edit');
 });

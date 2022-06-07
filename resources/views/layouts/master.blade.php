@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  @stack('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -84,7 +85,7 @@
 <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script> --}}
 
 <!-- DataTables -->
 <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.js') }}"></script>
@@ -92,10 +93,10 @@
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src="{{ asset('adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
+{{-- <script src="{{ asset('adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('adminlte/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
+<script src="{{ asset('adminlte/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script> --}}
 <!-- ChartJS -->
 <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 

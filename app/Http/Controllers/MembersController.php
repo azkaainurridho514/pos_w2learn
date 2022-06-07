@@ -59,8 +59,8 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        $m = Member::latest()->first();
-        $code = (int)$m->member_code+1 ?? 1;
+        $m = Member::latest()->first() ?? new Member();
+        $code = (int)substr($m->member_code, 2) + 1;
 
         $member = new Member();
         $member->member_code = "M-" . add_zero($code, 6);

@@ -55,12 +55,12 @@
           <li class="nav-header">TRANSAKSI</li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('expenditures.index') }}" class="nav-link">
               <i class="nav-icon fas fa-dollar-sign"></i><p>Pengeluaran</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('purchases.index') }}" class="nav-link">
               <i class="nav-icon fas fa-download"></i><p>Pembelian</p>
             </a>
           </li>
