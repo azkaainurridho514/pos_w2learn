@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -129,15 +130,19 @@ class MembersController extends Controller
 
     function cetak(Request $request)
     {
-        $barcode = array();
+
+        $barcode = collect(array());
         foreach ($request->member_id as $id) {
             $member = Member::find($id);
             $barcode[] = $member;
         }
 
+        $barcode = $barcode->chunk(2);
+
+        $setting = Setting::first();
         $no = 1;
-        $pdf = PDF::loadView('member.barcode', compact('barcode', 'no'));
-        $pdf->setPaper('A4', 'potrait');
-        return $pdf->stream('member.pdf');
+        $pdf = PDF::loadView('member.barcode', compact('barcode', 'no', 'setting'));
+        $pdf->setPaper(array(0, 0, 566.93, 850.39), 'potrait');
+         return $pdf->stream('member.pdf');
     }
 }

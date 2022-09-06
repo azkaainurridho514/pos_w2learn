@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card-body login-card-body">
      <div class="login-logo">
-      <a href="{{ url('/') }}"><b>Admin</b>LTE</a>
+      <a href="{{ url('/') }}"><b>Sistem</b>Management</a>
      </div>
 
       <form action="{{ route('login') }}" method="post">

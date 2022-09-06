@@ -108,7 +108,6 @@
       $('#modal-form form').attr('action', url);
       $('#modal-form [name=_method]').val('post');
       // $('#modal-form [name=nama]').focus();
-
     }
 
     function editForm(url){
@@ -168,13 +167,9 @@
           alert('Pilihlah beberapa produk untuk di hapus!!!');
           return;
         }
-
-
-
     }
 
-    function cetakBarcode(url)
-    {
+    function cetakBarcode(url){
       if($('input:checked').length < 1){
          alert('Pilih produk terlebih dahulu!!!');
          return;

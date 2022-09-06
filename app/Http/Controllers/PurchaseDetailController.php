@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Products;
 use App\Models\PurchaseDetail;
+use App\Models\Purchase;
 
 class PurchaseDetailController extends Controller
 {
@@ -14,11 +15,13 @@ class PurchaseDetailController extends Controller
         $purchase_id = session('purchase_id');
         $product = Products::orderBy('product_name')->get();
         $supplier = Supplier::find(session('supplier_id'));
+        $discount = Purchase::find($purchase_id)->discount ?? 0;
+
         if(! $supplier){
             abort(404);
         }
 
-        return view('purchase_detail.index', compact('purchase_id', 'product', 'supplier'));
+        return view('purchase_detail.index', compact('purchase_id', 'product', 'supplier', 'discount'));
     }
 
     public function data($id)
